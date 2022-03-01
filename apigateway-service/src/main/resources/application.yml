@@ -13,6 +13,14 @@ spring:
   cloud:
     gateway:
       routes:
+        - id: order-service
+          uri: lb://ORDER-SERVICE
+          predicates:
+            - Path=/order-service/**
+        - id: catalog-service
+          uri: lb://CATALOG-SERVICE
+          predicates:
+            - Path=/catalog-service/**
         - id: user-service
           uri: lb://USER-SERVICE
           predicates:
@@ -23,8 +31,8 @@ spring:
             - Path=/first-service/**
           filters:
             - CustomFilter
-#            - AddRequestHeader=first-request, first-request-header2
-#            - AddResponseHeader=first-response, first-resopne-header2
+        #            - AddRequestHeader=first-request, first-request-header2
+        #            - AddResponseHeader=first-response, first-resopne-header2
         - id: second-service
           uri: lb://MY-SECOND-SERVICE
           predicates:
