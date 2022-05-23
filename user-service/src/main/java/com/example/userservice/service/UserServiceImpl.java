@@ -6,6 +6,8 @@ import com.example.userservice.entity.UserEntity;
 import com.example.userservice.repository.UserRepository;
 import com.example.userservice.vo.ResponseOrder;
 import com.netflix.discovery.converters.Auto;
+import feign.FeignException;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
+@Slf4j
 @Transactional
 public class UserServiceImpl implements UserService {
     UserRepository userRepository;
@@ -74,7 +77,10 @@ public class UserServiceImpl implements UserService {
 //                        new ParameterizedTypeReference<List<ResponseOrder>>() {
 //                        });
 
+        //exception handling
+
         ResponseEntity<List<ResponseOrder>> orders = orderServiceClient.getOrders(userId);
+
         List<ResponseOrder> orderList = orders.getBody();
         userDto.setOrders(orderList);
 
