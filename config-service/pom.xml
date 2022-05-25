@@ -61,6 +61,15 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <plugin>
+                <groupId>external.atlassian.jgitflow</groupId>
+                <artifactId>jgitflow-maven-plugin</artifactId>
+                <version>1.0-m5.1</version>
+                <configuration>
+                    <username>devk0ng</username>
+                    <password>hsb1598741!</password>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
